@@ -19,6 +19,8 @@ Route::get('/', function () {
 //nom du controller@nom de la methode
 Route::any('/contact', 'ContactController@contact')->name('contact');
 
+Route::any('/media', 'MediaController@media')->name('media');
+
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
