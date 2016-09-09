@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+body{
+   font-family: 'Proxima Nova';
+}
+a {
+   color: inherit;
+}
+li{
+   display: inline;
+   list-style: none;
+}

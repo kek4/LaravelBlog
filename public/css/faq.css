@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+body{
+   background-image: url('https://bnisuccessnet.files.wordpress.com/2012/11/fotolia_42880578_m.jpg');
+   max-width: 100%;
+   background-size: cover;
+}
