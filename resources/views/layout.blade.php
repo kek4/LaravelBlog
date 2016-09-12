@@ -242,15 +242,16 @@
       <div class="control-sidebar-bg"></div>
    </div>
    <!-- ./wrapper -->
-   @section('js')
+
    <!-- jQuery 2.2.3 -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
    <!-- Bootstrap 3.3.6 -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+   @section('js')
+   @show
    <!-- AdminLTE App -->
    <script src="{{ asset('js/app.min.js')}}"></script>
-   @show
+   <script src="{{ asset('js/form.js')}}"></script>
 </body>
 </html>

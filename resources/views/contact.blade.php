@@ -3,10 +3,12 @@
 @section('css')
    @parent
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+   <link rel="stylesheet" href="../../plugins/datepicker/datepicker3.css">
 @endsection
 @section('js')
    @parent
    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+   <script src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
    @if(Session::has('success'))
       <script>toastr.success("{{ Session::get('success') }}", "Bravo !")</script>
    @endif
@@ -64,7 +66,7 @@
                </div>
                <div class="form-group @if($errors->has('site')) has-warning @elseif(count($errors) > 0) has-success @endif">
                   <label for="site">Site</label>
-                  <input type="url" placeholder="hhtp://monsite.fr" id="site" class="form-control" name="site" value="{{ old('site') }}">
+                  <input type="url" placeholder="http://monsite.fr" id="site" class="form-control" name="site" value="{{ old('site') }}">
                   @if($errors->has('site'))
                      <span class="help-block">{{ $errors->first('site')}}</span>
                   @endif
@@ -87,7 +89,6 @@
                      </div>
                      <input type="text" id="datepicker" class="form-control pull-right">
                   </div>
-                <!-- /.input group -->
             </div>
                <div class="form-group @if($errors->has('message')) has-warning @elseif(count($errors) > 0) has-success @endif">
                   <label for="message">Message</label>
