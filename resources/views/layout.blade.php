@@ -35,13 +35,14 @@
 
 
       <div class="content-wrapper">
+         <div class="row">
          <section class="content">
 
          @section('content')
 
          @show
          </section>
-
+      </div>
       </div>
 
 

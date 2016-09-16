@@ -19,7 +19,27 @@ Route::get('/', function () {
 //nom du controller@nom de la methode
 Route::any('/contact', 'ContactController@contact')->name('contact');
 
-Route::any('/user', 'UserController@user')->name('user');
+//grouper une liste de route permet de les prefixer au niveau uri
+Route::group(['prefix' => 'user'], function(){
+   Route::any('/user', 'UserController@user')->name('user');
+   Route::any('/list', 'UserController@listUser')->name('list');
+});
+
+Route::group(['prefix' => 'article', 'as' => 'art'], function(){
+   Route::any('/list', 'ArticleController@listArticle')->name('list');
+   Route::any('/voir/{id?}', 'ArticleController@voir')->name('voir');
+   // on definit une route en get avec les argument qu'on veut recuperer pour le controlleur
+   // puis le controler et la methode puis le nom de la vue pour l'appeller ds la route
+   Route::get('/visible/{id}/{visible}', 'ArticleController@visible')->name('visible');
+   Route::get('/delete/{id}', 'ArticleController@delete')->name('delete');
+   Route::get('/pdf/{id}', 'ArticleController@pdf')->name('pdf');
+});
+
+Route::group(['prefix' => 'commentaire', 'as' => 'com'], function(){
+   Route::any('/list', 'CommentaireController@listCommentaire')->name('list');
+   Route::get('/voir/{id}', 'CommentaireController@delete')->name('delete');
+   Route::get('/etat/{id}{etat}', 'CommentaireController@etat')->name('etat');
+});
 
 Route::any('/media', 'MediaController@media')->name('media');
 

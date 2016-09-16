@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+img{
+   height: 50%;
+   width: auto;
+}
+.fa-file-pdf-o{
+   font-size: 3rem;
+   color: red;
+}

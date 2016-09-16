@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.img-circle {
+   width: 100%;
+   height: auto;
+}
+.img-rounded {
+   width: 100px;
+   height: 100px;
+}
+tr td:last-of-type, tr td:nth-last-of-type(2){
+   text-align: center;
+}
+.fa:hover{
+   transform: scale(1.2);
+}
+.badge{
+   background-color: #3C8DBC;
+}
