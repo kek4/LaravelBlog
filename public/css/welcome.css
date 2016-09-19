@@ -3,10 +3,14 @@
 body{
    font-family: 'Proxima Nova';
 }
-a {
+/*a {
    color: inherit;
-}
+}*/
 li{
    display: inline;
    list-style: none;
+}
+.fa-file-pdf-o, .fa-heart-o, .fa-heart{
+   font-size: 3rem;
+   color: red;
 }

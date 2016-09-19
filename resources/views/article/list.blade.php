@@ -16,7 +16,6 @@
       <table class='table table-hover'>
          <thead>
             <tr class="success">
-               <th></th>
                <th>Titre</th>
                <th>Résumé</th>
                <th>Description</th>

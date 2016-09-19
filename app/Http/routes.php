@@ -33,6 +33,7 @@ Route::group(['prefix' => 'article', 'as' => 'art'], function(){
    Route::get('/visible/{id}/{visible}', 'ArticleController@visible')->name('visible');
    Route::get('/delete/{id}', 'ArticleController@delete')->name('delete');
    Route::get('/pdf/{id}', 'ArticleController@pdf')->name('pdf');
+   Route::any('/like/{id}', 'ArticleController@like')->name('like');
 });
 
 Route::group(['prefix' => 'commentaire', 'as' => 'com'], function(){

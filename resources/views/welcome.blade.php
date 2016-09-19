@@ -1,40 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+@extends('layout')
+@section('js')
+   @parent
+   <script src="{{asset ('plugins/chartjs/Chart.min.js')}}"></script>
+   <script src="{{asset ('js/welcome.js')}}"></script>
+@endsection
+@section('content')
+   <div class="row">
+           <div class="col-md-3 col-sm-6 col-xs-12">
+             <div class="info-box">
+               <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}" media="screen" title="no title" charset="utf-8">
+               <div class="info-box-content">
+                 <span class="info-box-text">Articles en ligne</span>
+                 <span class="info-box-number">1</span>
+               </div>
+               <!-- /.info-box-content -->
+             </div>
+             <!-- /.info-box -->
+           </div>
+           <!-- /.col -->
+           <div class="col-md-3 col-sm-6 col-xs-12">
+             <div class="info-box">
+               <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+               <div class="info-box-content">
+                 <span class="info-box-text">Catégories</span>
+                 <span class="info-box-number">5</span>
+               </div>
+               <!-- /.info-box-content -->
+             </div>
+             <!-- /.info-box -->
+           </div>
+           <!-- /.col -->
+           <div class="col-md-3 col-sm-6 col-xs-12">
+             <div class="info-box">
+               <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+               <div class="info-box-content">
+                 <span class="info-box-text">Médias</span>
+                 <span class="info-box-number">13</span>
+               </div>
+               <!-- /.info-box-content -->
+             </div>
+             <!-- /.info-box -->
+           </div>
+           <!-- /.col -->
+           <div class="col-md-3 col-sm-6 col-xs-12">
+             <div class="info-box">
+               <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+
+               <div class="info-box-content">
+                 <span class="info-box-text">Commentaires actif</span>
+                 <span class="info-box-number">93</span>
+               </div>
+               <!-- /.info-box-content -->
+             </div>
+             <!-- /.info-box -->
+           </div>
+           <!-- /.col -->
+        </div>
 
 
-   <div class="container">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Donut Chart</h3>
 
-   <h1>Bienvenue</h1>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+               <canvas id="pieChart" style="height: 234px; width: 468px;" height="234" width="468"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
 
-
-
-
-
-
-   </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </body>
-</html>
+@endsection

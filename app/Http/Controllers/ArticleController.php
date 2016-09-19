@@ -69,7 +69,7 @@ class ArticleController extends Controller
       $articles = DB::table('article')->paginate(1);
 
       return view('article/voir',
-      ['article' => $articles,
+      ['articles' => $articles,
       "page" => $page]
    );
    }
@@ -124,5 +124,40 @@ class ArticleController extends Controller
                               </table>');
               return $pdf->stream();
    }
+
+   public function like($id, Request $request){
+
+      $articles = Article::all();
+      if (!$request->session()->has('like')) {
+         $arrayLike = [];
+         // foreach ($articles as $article) {
+         //    $arrayLike[$article->id]['like'] = false;
+         //    $arrayLike[$article->id]['titre'] = $article->titre;
+         // }
+         $request->session()->put('like', $arrayLike);
+      }else{
+      $arrayLike = $request->session()->get('like');
+      }
+      //ou $arrayLike = session('like', []);
+      if (in_array($id, $arrayLike)) {
+         array_push($id, $arrayLike);
+         $comment = "Article ajouté en favoris";
+      }else{
+         unset($arrayLike[$id]);
+         $comment = "Article supprimé des favoris";
+      }
+      $request->session()->put('like', $arrayLike);
+      dump($request->session());
+      exit();
+
+
+      return redirect()->route('artlist',['articles' => $articles])->with('success',$comment);
+
+   }
+
+
+
+
+
 
 }

@@ -18,7 +18,7 @@ class CommentaireController extends Controller
 
    public function delete($id){
 
-      Commentaire::where('id', $id)->delete();;
+      Commentaire::where('id', $id)->delete();
 
       $commentaires = Commentaire::all();
       return redirect()->route('list',['commentaires' => $commentaires])->with('success','Commentaire supprimé');
