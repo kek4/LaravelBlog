@@ -23,9 +23,9 @@
                </span>
             </a>
             <ul class="treeview-menu">
-               <li><a href="pages/charts/chartjs.html"><i class="fa fa-user"></i> Utilisateurs</a></li>
+               <li><a href="{{route('list')}}"><i class="fa fa-user"></i> Utilisateurs</a></li>
                <li><a href="{{route('artlist')}}"><i class="fa fa-font"></i> Articles</a></li>
-               <li><a href="pages/charts/flot.html"><i class="fa fa-commenting-o"></i> Commentaires</a></li>
+               <li><a href="{{route('comlist')}}"><i class="fa fa-commenting-o"></i> Commentaires</a></li>
             </ul>
          </li>
          <li class="treeview">

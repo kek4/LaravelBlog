@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('homepage');
+Route::get('/', 'WelcomeController@welcome')->name('homepage');
+Route::get('/categories-stats', 'WelcomeController@statsCategories')->name('statsCategories');
+Route::get('/articles-stats', 'WelcomeController@statsArticles')->name('statsArticles');
+Route::get('/commentaires-stats', 'WelcomeController@comsArticles')->name('comsArticles');
 
 //Récupérer l'uri /contact et renvoyer une vue contact
 //nom du controller@nom de la methode

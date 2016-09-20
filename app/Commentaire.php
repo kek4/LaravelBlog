@@ -27,4 +27,23 @@ class Commentaire extends Model
                      ->update(['etat' => $etat]);
 
     }
+
+    public static function getNumberComActif($etat){
+
+      // '=' par defaut dans le where
+    return Commentaire::where('comment.etat', $etat)
+                  ->count();
+
+  }
+
+  public static function getComByYear($year){
+
+   // return Commentaire::select(DB::raw('COUNT(id) as value'), DB::raw('YEAR(created_at) as year'))
+   //               ->where(DB::raw('YEAR(created_at)'), '>', DB::raw('YEAR(NOW())-5'))
+   //               ->groupBy(DB::raw('YEAR(created_at)'))
+   //              ->get();
+
+      return Commentaire::whereYear('created_at', '=', $year)
+                        ->count();
+}
 }
