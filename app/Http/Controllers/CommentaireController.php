@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Commentaire;
+use Auth;
 
 class CommentaireController extends Controller
 {
@@ -38,4 +39,26 @@ class CommentaireController extends Controller
    return redirect()->route('list',['commentaires' => $commentaires])->with('success',$comment);
 
    }
+
+   public function getComByArt($id, $take){
+
+       return Commentaire::getComByArt($id, $take);
+   }
+
+   public function addCom($articleId, Request $request){
+
+     if ($request->content != '') {
+        $com = new Commentaire();
+        $com->content = $request->content;
+        $com->user_id = Auth::user()->id;
+        $com->article_id = $articleId;
+        $com->note  = $request->note;
+        $com->save();
+     }
+
+
+  }
+
+
+
 }

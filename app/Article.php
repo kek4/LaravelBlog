@@ -27,7 +27,7 @@ class Article extends Model
     return DB::table('article')
                  ->join('user', 'user.id', '=', 'article.user_id')
                  ->join('categorie', 'categorie.id', '=', 'article.categorie_id')
-                 ->select('article.*', 'categorie.titre as cat_titre','user.prenom as prenom')
+                 ->select('article.*','categorie.titre as cat_titre','user.prenom as prenom')
                  ->where('article.id', '=', $id)
                  ->first();
 
@@ -71,6 +71,11 @@ class Article extends Model
                   ->join('comment', 'article.id','=', 'comment.article_id')
                   ->groupBy('comment.article_id')
                  ->get();
+  }
+
+   public static function randomArt(){
+
+    return Article::inRandomOrder()->first();
   }
 
 

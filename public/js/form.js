@@ -31,7 +31,7 @@ $(document).ready(function() {
       removeTitle: 'Cancel or reset changes',
       elErrorContainer: '#kv-avatar-errors-1',
       msgErrorClass: 'alert alert-block alert-danger',
-      defaultPreviewContent: '<img src="'+$("#url").attr('data-url')+'" alt="Your Avatar" style="width:160px">',
+      defaultPreviewContent: '<img src="'+$("#url").attr('data-url')+'" alt="Your Avatar" class="imagePreview">',
    });
 }
 

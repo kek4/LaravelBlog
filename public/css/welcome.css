@@ -3,14 +3,20 @@
 body{
    font-family: 'Proxima Nova';
 }
-/*a {
-   color: inherit;
-}*/
-li{
-   display: inline;
-   list-style: none;
-}
 .fa-file-pdf-o, .fa-heart-o, .fa-heart{
    font-size: 3rem;
    color: red;
+}
+.datebeforescroll{
+   padding-right: 10px;
+}
+.contenttchat{
+   padding-left: 10px;
+}
+.moreComment{
+   text-align: center;
+   margin-top: 10px;
+}
+.note{
+   padding: 10px 10px 0 10px;
 }

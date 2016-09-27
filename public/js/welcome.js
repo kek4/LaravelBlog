@@ -1,5 +1,34 @@
 $(document).ready(function() {
    $(function () {
+      $('.slimtchat').slimScroll({
+          height: '320',
+          railVisible: true,
+          alwaysVisible: true
+      });
+      $('.slimcomless2').slimScroll({
+          height: '120',
+          railVisible: false,
+          alwaysVisible: false
+      });
+      $('.slimcommore2').slimScroll({
+          height: '120',
+          railVisible: true,
+          alwaysVisible: true
+      });
+      $('#exemple').barrating({
+        theme: 'fontawesome-stars',
+        initialRating: 3,
+        hoverState: true
+      });
+      $('.exemple').barrating({
+        theme: 'fontawesome-stars',
+        readonly: true
+      });
+
+
+
+
+
       //-------------
       //- PIE CHART -
       //-------------
@@ -7,7 +36,7 @@ $(document).ready(function() {
       var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
       var pieChart = new Chart(pieChartCanvas);
       var PieData;
-      $.getJSON("/categories-stats",
+      $.getJSON("/admin/categories-stats",
       function(data){ //data est la fonction de retour
          PieData=data;
          pieChart.Doughnut(PieData, pieOptions);
@@ -41,7 +70,7 @@ $(document).ready(function() {
 
       "use strict";
       //DONUT CHART
-      $.getJSON("/articles-stats",
+      $.getJSON($('#sales-chart').data('url'),
       function(data){
          var donut = new Morris.Donut({
             element: 'sales-chart',
@@ -54,7 +83,7 @@ $(document).ready(function() {
 
 
 
-      $.getJSON("/commentaires-stats",
+      $.getJSON($('#myfirstchart').data('url'),
       function(data){
          var line= new Morris.Line({
             // ID of the element in which to draw the chart.

@@ -10,11 +10,21 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group([
+   'prefix' =>'admin',
+   'middleware' => 'auth'], function () { //middleware : filtre d'authentification: uniquement si connecter
 
 Route::get('/', 'WelcomeController@welcome')->name('homepage');
 Route::get('/categories-stats', 'WelcomeController@statsCategories')->name('statsCategories');
 Route::get('/articles-stats', 'WelcomeController@statsArticles')->name('statsArticles');
 Route::get('/commentaires-stats', 'WelcomeController@comsArticles')->name('comsArticles');
+Route::get('/tchat/{skip?}/{take?}', function($skip = 0, $take = 15){
+   // take
+   return App\Tchat::skip($skip)->take($take)->orderBy('id','desc')->get();
+})->name('tchat');
+Route::post('/tchat-add', 'TchatController@add')->name('tchat-add');
+Route::post('/com-add/{articleId}', 'CommentaireController@addCom')->name('com-add');
+Route::get('/com-random-art/{id}/{take}', 'CommentaireController@getComByArt')->name('com-random-art');
 
 //Récupérer l'uri /contact et renvoyer une vue contact
 //nom du controller@nom de la methode
@@ -45,6 +55,7 @@ Route::group(['prefix' => 'commentaire', 'as' => 'com'], function(){
 
 Route::any('/media', 'MediaController@media')->name('media');
 
+
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
@@ -56,3 +67,7 @@ Route::get('/concept', function () {
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
+});
+
+Route::auth();

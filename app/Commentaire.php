@@ -36,7 +36,7 @@ class Commentaire extends Model
 
   }
 
-  public static function getComByYear($year){
+   public static function getComByYear($year){
 
    // return Commentaire::select(DB::raw('COUNT(id) as value'), DB::raw('YEAR(created_at) as year'))
    //               ->where(DB::raw('YEAR(created_at)'), '>', DB::raw('YEAR(NOW())-5'))
@@ -45,5 +45,22 @@ class Commentaire extends Model
 
       return Commentaire::whereYear('created_at', '=', $year)
                         ->count();
-}
+            }
+
+   public static function getComByArt($id, $take){
+
+    return Commentaire::select('comment.*', 'user.nom as nom', 'user.prenom as prenom', 'user.avatar as avatar')
+                  ->join('user', 'comment.user_id', '=', 'user.id')
+                  ->where('comment.article_id', '=', $id)
+                  ->take($take)
+                  ->orderBy('id','desc')
+                 ->get();
+  }
+
+   public static function getNumberComByArt($id){
+
+    return Commentaire::select('comment.*')
+                  ->where('comment.article_id', '=', $id)
+                 ->count();
+  }
 }

@@ -37,7 +37,7 @@
 
       <div class="content-wrapper">
          <div class="row">
-         <section class="content">
+         <section class="content" ng-app="app">
 
          @section('content')
 
@@ -245,15 +245,30 @@
    </div>
    <!-- ./wrapper -->
 
-   <!-- jQuery 2.2.3 -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-   <!-- Bootstrap 3.3.6 -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    @section('js')
+      <!-- jQuery 2.2.3 -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <!-- Bootstrap 3.3.6 -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angularFire/2.0.2/angularfire.min.js"></script>
+
    @show
    <!-- AdminLTE App -->
    <script src="{{ asset('js/app.min.js')}}"></script>
    <script src="{{ asset('js/form.js')}}"></script>
+   <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+   <script>
+    // Initialize Firebase
+    // connecte a notre base de video 3wa sur firebase
+    var config = {
+      apiKey: "AIzaSyARyRTdBC1a8PAjdAm5YcmgSi3gkrXOvIk",
+      authDomain: "videos-7ddfb.firebaseapp.com",
+      databaseURL: "https://videos-7ddfb.firebaseio.com",
+      storageBucket: "videos-7ddfb.appspot.com",
+      messagingSenderId: "920426966939"
+    };
+    firebase.initializeApp(config);
+   </script>
 </body>
 </html>

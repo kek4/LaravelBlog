@@ -1,6 +1,6 @@
 <header class="main-header">
    <!-- Logo -->
-   <a href="index2.html" class="logo">
+   <a href="{{ route('homepage') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -12,20 +12,41 @@
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
          <span class="sr-only">Toggle navigation</span>
       </a>
-      {{-- <div class="dropdown pull-right">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-heart" aria-hidden="true"></i></button>
-        <ul class="dropdown-menu">
-           @if(count(Session::get('like')))
-             @foreach(Session::get('like') as $id)
-                   <li><a href="{{ route('artvoir', ['page' => App\Article::position($id), 'id' => $id]) }}">{{Article::where('id', $id)->select('titre')}}</a></li>
-             @endforeach
-          @else
-             <li><a href="#">Aucun article en favoris</a></li>
-          @endif
-          </ul>
+      <div class="navbar-custom-menu">
+         <ul class="nav navbar-nav">
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="{{ asset('uploads/'. Auth::user()->avatar) }}" class="user-image" alt="User Image">
+                  <span class="hidden-xs">{{ Auth::user()->nom }}</span>
+               </a>
+               <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                     <img src="{{ asset('uploads/'. Auth::user()->avatar) }}" class="img-circle" alt="User Image">
+                     <p>
+                        {{ Auth::user()->nom }}
+                        <small>since date</small>
+                     </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                     <div class="pull-left">
+                        <a href="#" class="btn btn-default btn-flat">Profil</a>
+                     </div>
+                     <div class="pull-right">
+                        <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Logout</a>
+                     </div>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            </li>
 
-      </div> --}}
-
+         </ul>
+      </div>
    </nav>
 </header>
 <!-- Left side column. contains the logo and sidebar -->

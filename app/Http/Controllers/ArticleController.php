@@ -42,6 +42,12 @@ class ArticleController extends Controller
 
       $id->delete();
 
+      Mail::send('email/welcome', [],
+      function($m){
+         $m->from(Auth::user()->email, 'julien');
+         $m->to("toto@free.fr", "toto")->subject('un article a été supprimé');
+      });
+
       $articles = Article::all();
       return redirect()->route('artlist',['articles' => $articles])->with('success','Article supprimé');
    }
@@ -147,9 +153,6 @@ class ArticleController extends Controller
          $comment = "Article supprimé des favoris";
       }
       $request->session()->put('like', $arrayLike);
-      dump($request->session());
-      exit();
-
 
       return redirect()->route('artlist',['articles' => $articles])->with('success',$comment);
 

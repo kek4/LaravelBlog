@@ -37,9 +37,9 @@
                </span>
             </a>
             <ul class="treeview-menu">
-               <li><a href="pages/UI/general.html"><i class="fa fa-user-plus"></i> Utilisateurs</a></li>
-               <li><a href="pages/UI/icons.html"><i class="fa fa-font"></i> Articles</a></li>
-               <li><a href="pages/UI/icons.html"><i class="fa fa-commenting-o"></i> Commentaires</a></li>
+               <li><a href="{{route('user')}}"><i class="fa fa-user-plus"></i> Utilisateurs</a></li>
+               <li><a href="{{route('list')}}"><i class="fa fa-font"></i> Articles</a></li>
+               <li><a href="{{route('list')}}"><i class="fa fa-commenting-o"></i> Commentaires</a></li>
             </ul>
          </li>
       </ul>

@@ -46,7 +46,7 @@
       @endif
       <div class="box box-info">
          <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-envelope" aria-hidden="true"></i> Formulaire d'inscription'</h3>
+            <h3 class="box-title"><i class="fa fa-envelope" aria-hidden="true"></i> Formulaire d'inscription</h3>
          </div>
          <form role="form" method="post" action="" enctype="multipart/form-data">
             {{ csrf_field() }}

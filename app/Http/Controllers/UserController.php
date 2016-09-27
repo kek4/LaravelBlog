@@ -41,8 +41,6 @@ class UserController extends Controller
          'url' => 'image|dimensions:min_width=100,min_height=200',
       ],[
          'required' => 'Le champ :attribute est requis',
-         'titre.regex' => "Le titre n'est pas valide",
-         'titre.unique' => "Ce titre existe déjà",
          'date_format' => "Le format de date doit être dd-mm-aaaa",
          'before' => "La date doit être inférieur ou égal à aujourd'hui",
          'dimensions' => "Avatar trop petit",

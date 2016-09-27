@@ -9,22 +9,31 @@ use App\Http\Requests;
 use App\Article;
 use App\Media;
 use App\Commentaire;
+use Mail;
+use Auth;
 
 class WelcomeController extends Controller
 {
 
     public function welcome() {
 
-      $nbArticles = Article::getNumberArticleVisible(1);
-      $nbMedia = Media::getNumberMediaVisible(1);
-      // dump(Media::has('articles')->count());exit;
-      $nbCatWithArt = Article::getNumberCatWithArt();
-      $nbComActif = Commentaire::getNumberComActif(2);
+
+      $nbArticles = Article::getNumberArticleVisible(1); // nombres d'articles visibles (1 = visible dans la base)
+      $nbMedia = Media::getNumberMediaVisible(1); //nombre de média visible
+      $nbCatWithArt = Article::getNumberCatWithArt(); // nombre de catégories avec des articles
+      $nbComActif = Commentaire::getNumberComActif(2); // nombre de commentaire actif (2 = actif dans la base)
+      $randomArt = Article::randomArt(); // récupére un article aléatoirement
+      $catArt = Article::articleAutCat($randomArt->id); // récupère la catégorie de l'article
+      $numberComArt = Commentaire::getNumberComByArt($randomArt->id); //nombre de commentaire pour l'article choisi en random
+
 
       return view('welcome', ['nbArticles' => $nbArticles,
                               'nbCatWithArt' => $nbCatWithArt,
                               'nbMedia' => $nbMedia,
-                              'nbComActif' => $nbComActif]);
+                              'nbComActif' => $nbComActif,
+                              'randomArt' => $randomArt,
+                              'numberComArt' => $numberComArt,
+                              'catArt' => $catArt]);
    }
 
    /**

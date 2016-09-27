@@ -2,3 +2,10 @@
 .file-input {
    text-align: center;
 }
+.imagePreview {
+   width: 160px;
+}
+.file-preview-frame {
+   margin: 0 auto;
+   width: 160px;
+}

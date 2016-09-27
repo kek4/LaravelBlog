@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -28,8 +29,10 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin';
 
+
+    protected $redirectAfterLogout = '/login';
     /**
      * Create a new authentication controller instance.
      *
@@ -48,11 +51,27 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
+      $dt = new Carbon();
+      $dt->subYears(18)->addDay()->format('d-m-Y');
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+            'nom' => 'required|regex:/[a-z\-\ ]{3,}/i',
+            'prenom' => 'required|regex:/[a-z\-\ ]{3,}/i',
+            'email' => 'required|regex:/^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i|unique:user',
+            'password' => ['required'],
+            'password_confirmation' => 'same:password',
+            'phone' => ['required','regex:/^(0|(00|\+)33)[1-7][0-9]{8}/i'],
+            'cp' => 'required|digits:5',
+            'biographie' => 'min:15',
+            'ville' => 'required|regex:/[a-z\-\ ]{3,}/i',
+            'birthday' => 'required|date_format:d-m-Y|before:'.$dt,
+            'url' => 'image|dimensions:min_width=99,min_height=200',
+            'biographie' => 'required',
+         ],[
+            'required' => 'Le champ :attribute est requis',
+            'date_format' => "Le format de date doit être dd-mm-aaaa",
+            'before' => "La date doit être inférieur ou égal à aujourd'hui",
+            'dimensions' => "Avatar trop petit",
+         ]);
     }
 
     /**
@@ -63,10 +82,29 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+
+      if (isset($data['url']) && !empty($data['url'])) {
+          $destinationPath = public_path("/uploads/");//destination
+          $file = $data['url'];//recupere le fichier
+          $fileName = $file->getClientOriginalName();//recupere le nom
+          $file->move($destinationPath, $fileName);//bouge le fichier
+      }
+
+         $birthday = Carbon::createFromFormat('d-m-Y', $data['birthday'])->format('Y-m-d');
         return User::create([
-            'name' => $data['name'],
+            'nom' => $data['nom'],
+            'prenom' => $data['prenom'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'code_postal' => $data['cp'],
+            'biographie' => $data['biographie'],
+            'ville' => $data['ville'],
+            'avatar' => $fileName,
+            'date_auth' => new \DateTime(),
+            'date_naissance' => Carbon::parse($birthday),
         ]);
+
+
     }
 }
