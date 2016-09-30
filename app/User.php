@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 class User extends Authenticatable
 {
 
@@ -21,4 +22,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function getBadUser(){
+      return DB::table('user')->select('nom', 'email')
+                              ->leftJoin('comment', 'comment.user_id', '=', 'user.id')
+                              ->whereNull('comment.user_id' )
+                              ->get();
+   }
 }

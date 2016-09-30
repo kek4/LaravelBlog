@@ -14,6 +14,8 @@ Route::group([
    'prefix' =>'admin',
    'middleware' => 'auth'], function () { //middleware : filtre d'authentification: uniquement si connecter
 
+Route::get('/langue/{locale}', 'WelcomeController@langue')->name('langue');
+
 Route::get('/', 'WelcomeController@welcome')->name('homepage');
 Route::get('/categories-stats', 'WelcomeController@statsCategories')->name('statsCategories');
 Route::get('/articles-stats', 'WelcomeController@statsArticles')->name('statsArticles');
@@ -25,6 +27,8 @@ Route::get('/tchat/{skip?}/{take?}', function($skip = 0, $take = 15){
 Route::post('/tchat-add', 'TchatController@add')->name('tchat-add');
 Route::post('/com-add/{articleId}', 'CommentaireController@addCom')->name('com-add');
 Route::get('/com-random-art/{id}/{take}', 'CommentaireController@getComByArt')->name('com-random-art');
+Route::post('add-tweet', 'WelcomeController@addTweet')->name('add-tweet');
+
 
 //Récupérer l'uri /contact et renvoyer une vue contact
 //nom du controller@nom de la methode
@@ -55,6 +59,7 @@ Route::group(['prefix' => 'commentaire', 'as' => 'com'], function(){
 
 Route::any('/media', 'MediaController@media')->name('media');
 
+Route::any('/panier', 'PanierController@panier')->name('panier');
 
 Route::get('/faq', function () {
     return view('faq');

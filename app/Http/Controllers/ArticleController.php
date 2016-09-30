@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Article;
 use Illuminate\Pagination\Paginator;
+use Session;
 
 
 class ArticleController extends Controller
@@ -131,36 +132,23 @@ class ArticleController extends Controller
               return $pdf->stream();
    }
 
-   public function like($id, Request $request){
+   public function like($id){
 
-      $articles = Article::all();
-      if (!$request->session()->has('like')) {
-         $arrayLike = [];
-         // foreach ($articles as $article) {
-         //    $arrayLike[$article->id]['like'] = false;
-         //    $arrayLike[$article->id]['titre'] = $article->titre;
-         // }
-         $request->session()->put('like', $arrayLike);
-      }else{
-      $arrayLike = $request->session()->get('like');
-      }
+         $arrayLike = Session::get('like', []);
+
       //ou $arrayLike = session('like', []);
-      if (in_array($id, $arrayLike)) {
-         array_push($id, $arrayLike);
+      if (!in_array($id, $arrayLike)) {
+         $arrayLike[$id] = $id;
          $comment = "Article ajouté en favoris";
       }else{
          unset($arrayLike[$id]);
          $comment = "Article supprimé des favoris";
       }
-      $request->session()->put('like', $arrayLike);
 
-      return redirect()->route('artlist',['articles' => $articles])->with('success',$comment);
+      Session::put('like', $arrayLike);
+
+      return redirect()->route("artlist")->with('success',$comment);
 
    }
-
-
-
-
-
 
 }

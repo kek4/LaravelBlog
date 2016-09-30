@@ -42,6 +42,7 @@
                <li><a href="{{route('list')}}"><i class="fa fa-commenting-o"></i> Commentaires</a></li>
             </ul>
          </li>
+         <li><a href="{{route('panier')}}"><i class="fa fa-user-plus"></i> Panier</a></li>
       </ul>
    </section>
    <!-- /.sidebar -->

@@ -15,13 +15,13 @@
    <script src="{{asset ('plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
    <script src="{{asset ('js/welcome.js')}}"></script>
    <script type="text/javascript">
-   $(function(){
-
-   })
    </script>
    <script src="{{asset ('js/TchatController.js')}}"></script>
    <script src="{{asset ('js/CommentaireController.js')}}"></script>
    <script src="{{asset ('js/VideosController.js')}}"></script>
+   @if(Session::has('success'))
+      <script>toastr.success("{{ Session::get('success') }}", "Bravo !")</script>
+   @endif
 @endsection
 @section('content')
    <div class="container-fluid">
@@ -261,6 +261,28 @@
             <h3><i class="fa fa-video-camera"></i> Créer une vidéo</h3>
          </div>
       </div>
+         <div class="col-md-6">
+            <div class="box-header">
+               <h3><i class="fa fa-twitter"> Mes tweets</i></h3>
+            </div>
+            <div class="box-body">
+               <div class="row">
+                  @foreach ($twitter as $twit)
+                        <div class="alert alert-info">
+                           <a href="{!! Twitter::linkUser($twit->user)!!}"><img src="{!! $twit->user->profile_image_url !!}" alt="" class="img-circle" /></a> <span class="pull-right">{{ Twitter::ago($twit->created_at)}}</span>
+                              <p>{!! Twitter::linkify($twit->text) !!}</p>
+                        </div>
+                  @endforeach
+               </div>
+            </div>
+            <div class="box-footer">
+               <form action="{{ route('add-tweet') }}" method="post" class="form-group">
+                  {{csrf_field()}}
+                  <textarea name="tweet" rows="3" cols="40" required></textarea>
+                  <button class="btn btn-lg pull-right" type="submit" style="display:inline-block;vertical-align:middle"><i class="fa fa-twitter"></i></button>
+               </form>
+            </div>
+         </div>
       {{-- <div class="row">
          <div class="col-xs-12"  ng-controller="VideosController">
             <div class="box-body">

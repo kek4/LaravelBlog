@@ -16,7 +16,7 @@
       <table class='table table-hover'>
          <thead>
             <tr class="success">
-               <th>Titre</th>
+               <th>{{ trans('messages.titre') }}</th>
                <th>Résumé</th>
                <th>Description</th>
                <th>Image</th>

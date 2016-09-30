@@ -14,6 +14,47 @@
       </a>
       <div class="navbar-custom-menu">
          <ul class="nav navbar-nav">
+            <li class="dropdown tasks-menu">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <i class="fa fa-flag-o"></i>
+               </a>
+               <ul class="dropdown-menu">
+                  @if (Session::has('like') && count(Session::get('like')))
+                  @foreach (Session::get('like') as $value)
+                     <li>{{ $value }}</li>
+                  @endforeach
+               @else
+                  <li>Panier vide</li>
+               @endif
+               </ul>
+            </li>
+            <li class="dropdown tasks-menu">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <i class="fa fa-flag-o"></i>
+               </a>
+               <ul class="dropdown-menu">
+                  <li>
+                     <!-- inner menu: contains the actual data -->
+
+                     <ul class="menu">
+                        <li><!-- Task item -->
+                           <a href="{{ route('langue', ['locale' => 'fr']) }}">
+                              <h3>
+                                 Français
+                              </h3>
+                           </a>
+                        </li>
+                        <li><!-- Task item -->
+                           <a href="{{ route('langue', ['locale' => 'en']) }}">
+                              <h3>
+                                 English
+                              </h3>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">

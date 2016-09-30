@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App;
 use App\Article;
 use App\Media;
 use App\Commentaire;
 use Mail;
 use Auth;
+use Unirest\Request as UniRequest;
+use Twitter;
+
 
 class WelcomeController extends Controller
 {
@@ -25,7 +28,8 @@ class WelcomeController extends Controller
       $randomArt = Article::randomArt(); // récupére un article aléatoirement
       $catArt = Article::articleAutCat($randomArt->id); // récupère la catégorie de l'article
       $numberComArt = Commentaire::getNumberComByArt($randomArt->id); //nombre de commentaire pour l'article choisi en random
-
+      $twitter = Twitter::getHomeTimeline(['screen_name' => 'Julien_Belmont', 'count' => 5, 'format' => 'object']);
+      // dump($twitter);exit;
 
       return view('welcome', ['nbArticles' => $nbArticles,
                               'nbCatWithArt' => $nbCatWithArt,
@@ -33,7 +37,9 @@ class WelcomeController extends Controller
                               'nbComActif' => $nbComActif,
                               'randomArt' => $randomArt,
                               'numberComArt' => $numberComArt,
-                              'catArt' => $catArt]);
+                              'catArt' => $catArt,
+                              'twitter' => $twitter
+                           ]);
    }
 
    /**
@@ -74,4 +80,21 @@ class WelcomeController extends Controller
          return $datas;
 
    }
+
+   public function langue($locale){
+      App::setLocale($locale);
+      return redirect()->back();
+   }
+
+   /**
+    * Publie un tweet
+    * @param Request $request [description]
+    */
+   public function addTweet(Request $request){
+
+      Twitter::postTweet(['status' => $request->tweet]);
+
+      return redirect()->back()->with('success', 'Tweet tweet');
+   }
+
 }
